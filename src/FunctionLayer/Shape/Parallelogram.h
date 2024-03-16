@@ -18,6 +18,8 @@ public:
                                       Intersection *intersection,
                                       float *pdf) const override;
 
+  float getArea() const;
+
 public:
   Point3f base;
   Vector3f edge0, edge1;

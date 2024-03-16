@@ -3,7 +3,20 @@
 AreaLight::AreaLight(const Json &json) : Light(json) {
   type = LightType::AreaLight;
   shape = Factory::construct_class<Shape>(json["shape"]);
-  energy = fetchRequired<Spectrum>(json, "energy");
+
+  // 保证energy与power不同时存在，且必定存在一个
+  energy = fetchOptional<Spectrum>(json, "energy", 0.0f);
+  Spectrum power = fetchOptional<Spectrum>(json, "power", 0.0f);
+
+  if (!energy.isZero()) 
+  {
+      // do nothing
+  }
+  else // if (!power.isZero())
+  { 
+      // 将power转化为energy
+      energy = power / shape->getArea();
+  }
 }
 
 Spectrum AreaLight::evaluateEmission(const Intersection &intersection,
