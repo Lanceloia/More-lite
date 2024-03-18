@@ -1,0 +1,13 @@
+{
+    "version": "0.2.1",
+    "defaults": {},
+    "configurations": [
+        {
+            "type": "default",
+            "project": "CMakeLists.txt",
+            "projectTarget": "Moer.exe (D:\\More-lite\\target\\bin\\Moer.exe)",
+            "name": "Moer.exe (D:\\More-lite\\target\\bin\\Moer.exe)",
+            "args": [ "..\\..\\examples\\Lab1\\bunny-light" ]
+        }
+    ]
+}

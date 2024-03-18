@@ -59,9 +59,9 @@
         "power" : [60, 60, 60],
         "shape" : {
           "type" : "parallelogram",
-          "base" : [-1, 2.5, -1],
-          "edge1" : [2, 0, 0],
-          "edge0" : [0, 0, 2],
+          "base" : [-2, 2.5, -2],
+          "edge1" : [4, 0, 0],
+          "edge0" : [0, 0, 4],
           "material" : {
             "type" : "matte",
             "albedo" : [0.5, 0.5, 0.5]

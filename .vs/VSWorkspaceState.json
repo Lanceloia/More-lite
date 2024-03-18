@@ -4,5 +4,13 @@
       "out\\build\\x64-Debug",
       "out\\install\\x64-Debug"
     ]
-  }
+  },
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\CoreLayer\\ColorSpace",
+    "\\src\\CoreLayer\\Math"
+  ],
+  "SelectedNode": "\\src\\main.cpp",
+  "PreviewInSolutionExplorer": false
 }

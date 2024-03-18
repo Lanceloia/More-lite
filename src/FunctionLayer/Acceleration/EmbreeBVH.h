@@ -7,17 +7,17 @@
 //* embree在github上的地址https://github.com/embree/embree
 class EmbreeBVH : public Acceleration {
 public:
-  EmbreeBVH();
+	EmbreeBVH();
 
-  virtual ~EmbreeBVH() = default;
+	virtual ~EmbreeBVH() = default;
 
-  virtual void build() override;
+	virtual void build() override;
 
-  virtual bool rayIntersect(Ray &ray, int *geomID, int *primID, float *u,
-                            float *v) const override;
+	virtual bool rayIntersect(Ray& ray, int* geomID, int* primID, float* u,
+		float* v) const override;
 
 private:
-  //* 通过RTCDevice和RTCScene调用embree
-  RTCDevice device;
-  RTCScene scene;
+	//* 通过RTCDevice和RTCScene调用embree
+	RTCDevice device;
+	RTCScene scene;
 };

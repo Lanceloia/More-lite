@@ -19,32 +19,32 @@
 
 class Factory {
 public:
-  Factory() = delete;
+	Factory() = delete;
 
-  static void
-  register_class(const std::string &name,
-                 const std::function<std::shared_ptr<void>(const Json &json)>
-                     &constructor) {
-    // constructor_map[name] = constructor;
-    getMap().emplace(std::make_pair(name, constructor));
-  }
+	static void
+		register_class(const std::string& name,
+			const std::function<std::shared_ptr<void>(const Json& json)>
+			& constructor) {
+		// constructor_map[name] = constructor;
+		getMap().emplace(std::make_pair(name, constructor));
+	}
 
-  template <typename T>
-  static std::shared_ptr<T> construct_class(const Json &json) {
-    std::string type = fetchRequired<std::string>(json, "type");
-    if (getMap().count(type) == 0) {
-      std::cerr << "Fatal, unknown type " << type << std::endl;
-      std::exit(1);
-    }
-    return std::static_pointer_cast<T>(getMap()[type](json));
-  }
+	template <typename T>
+	static std::shared_ptr<T> construct_class(const Json& json) {
+		std::string type = fetchRequired<std::string>(json, "type");
+		if (getMap().count(type) == 0) {
+			std::cerr << "Fatal, unknown type " << type << std::endl;
+			std::exit(1);
+		}
+		return std::static_pointer_cast<T>(getMap()[type](json));
+	}
 
-  static std::map<std::string,
-                  std::function<std::shared_ptr<void>(const Json &)>> &
-  getMap() {
-    static std::map<std::string,
-                    std::function<std::shared_ptr<void>(const Json &)>>
-        constructor_map = {};
-    return constructor_map;
-  }
+	static std::map<std::string,
+		std::function<std::shared_ptr<void>(const Json&)>> &
+		getMap() {
+		static std::map<std::string,
+			std::function<std::shared_ptr<void>(const Json&)>>
+			constructor_map = {};
+		return constructor_map;
+	}
 };
