@@ -1,0 +1,65 @@
+{
+  "output" : {
+    "filename" : "bunny_texture_cell.hdr"
+  },
+  "sampler" : {
+    "type" : "independent",
+    "xSamples" : 16,
+    "ySamples" : 16
+  },
+  "camera" : {
+    "type" : "pinhole",
+    "transform" : {
+      "position" : [0, 1, 4],
+      "up" : [0, 1, 0],
+      "lookAt" : [0, 0.3, 0]
+    },
+    "tNear" : 0.1,
+    "tFar" : 10000,
+    "verticalFov" : 45,
+    "timeStart" : 0,
+    "timeEnd" : 0,
+    "film" : {
+      "size" : [600, 400]
+    }
+  },
+  "integrator" : {
+    "type" : "directSampleLight"
+  },
+  "scene" : {
+    "shapes" : [
+      {
+        "type" : "triangle",
+        "file" : "models/bunny.obj",
+        "material" : {
+          "type" : "matte",
+          "albedo" : {
+            "type" : "cellTex"
+          }
+        },
+        "transform" : {
+          "translate" : [0, 0, 0]
+        }
+      },
+      {
+        "type" : "parallelogram",
+        "base" : [-10, 0, -10],
+        "edge0" : [0, 0, 20],
+        "edge1" : [20,0,0],
+        "material" : {
+          "type" : "matte",
+          "albedo" : [0.7,0.7,0.7]
+        }
+      }   
+    ],
+    "lights" : [
+      {
+        "type" : "environmentLight",
+        "texture" : {
+          "type" : "imageTex",
+          "file" : "images/indoor.hdr"
+        }
+      }
+    ]
+  }
+}

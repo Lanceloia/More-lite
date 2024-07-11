@@ -8,9 +8,11 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\CoreLayer\\ColorSpace",
-    "\\src\\CoreLayer\\Math"
+    "\\src\\FunctionLayer",
+    "\\src\\FunctionLayer\\Acceleration",
+    "\\src\\FunctionLayer\\Integrator",
+    "\\src\\FunctionLayer\\Texture"
   ],
-  "SelectedNode": "\\src\\main.cpp",
+  "SelectedNode": "\\src\\FunctionLayer\\Texture\\WoodTexture.cpp",
   "PreviewInSolutionExplorer": false
 }

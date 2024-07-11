@@ -79,8 +79,9 @@ inline void computeRayDifferentials(Intersection* intersection,
 			float dudx, dvdx, dudy, dvdy;
 			if (!solveLinearSystem2x2(A, Bx, &dudx, &dvdx))
 				dudx = dvdx = .0f;
-			if (!solveLinearSystem2x2(A, Bx, &dudy, &dvdy))
+			if (!solveLinearSystem2x2(A, By, &dudy, &dvdy))
 				dudy = dvdy = .0f;
+			// printf("%f, %f, %f, %f\n", dudx, dudy, dvdx, dvdy);
 
 			intersection->dudx = dudx;
 			intersection->dudy = dudy;

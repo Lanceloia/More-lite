@@ -19,7 +19,7 @@
 #define PBWIDTH 60
 
 #define DATA_PARALLEL
-#define USE_CPU 16
+#define USE_CPU 6
 
 inline void printProgress(float percentage) {
 	int val = (int)(percentage * 100);
@@ -94,12 +94,12 @@ int main(int argc, char** argv) {
 		printProgress((float)finished / (height * width));
 		Sleep(500);
 	}
+	Sleep(1000);
+	printProgress(1.f);	// must before shutdown
+	printf("\n");
 	pool.shutdown();
 
-	printProgress(1.f);
 #endif
-
-	printProgress(1.f);
 
 	auto end = std::chrono::system_clock::now();
 

@@ -73,6 +73,7 @@ DirectIntegratorSampleBSDF::li(Ray& ray, const Scene& scene,
 	}
 
 	auto intersection = intersectionOpt.value();
+	computeRayDifferentials(&intersection, ray);
 
 	if (auto light = intersection.shape->light; light) {
 		spectrum += light->evaluateEmission(intersection, -ray.direction);

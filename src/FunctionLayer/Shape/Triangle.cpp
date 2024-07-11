@@ -180,6 +180,32 @@ void TriangleMesh::fillIntersection(float distance, int primID, float u,
 	tangent = normalize(cross(intersection->normal, bitangent));
 	intersection->tangent = tangent;
 	intersection->bitangent = bitangent;
+
+
+	// TODO 计算偏微分dpdu和dpdv
+	if (meshData->texcodBuffer.size() != 0) {
+		Vector3f dpdu, dpdv;
+		
+		Vector2f t0 = meshData->texcodBuffer[faceInfo[0].texcodIndex],
+			t1 = meshData->texcodBuffer[faceInfo[1].texcodIndex],
+			t2 = meshData->texcodBuffer[faceInfo[2].texcodIndex];
+
+		float du1 = t1[0] - t0[0], dv1 = t1[1] - t0[1],
+			du2 = t2[0] - t0[0], dv2 = t2[1] - t0[1];
+
+		Vector3f dp1 = pu - pw, dp2 = pv - pw;
+
+		float det = du1 * dv2 - dv1 * du2;
+		if (abs(det) < EPSILON) {
+			dpdu = dpdv = Vector3f(0.f, 0.f, 0.f);
+		}
+		else {
+			dpdu = (dv2 * dp1 - dv1 * dp2) / det;
+			dpdv = (du1 * dp2 - du2 * dp1) / det;
+		}
+		intersection->dpdu = dpdu;
+		intersection->dpdv = dpdv;
+	}
 }
 
 float TriangleMesh::getArea() const
@@ -190,12 +216,8 @@ float TriangleMesh::getArea() const
 void TriangleMesh::uniformSampleOnSurface(Vector2f sample, Intersection* intersection, float* pdf) const
 {
 	float u = sample.a[0];
-	float v = sample.a[0] + sample.a[1];
-	float w = sample.a[0] + 2 * sample.a[1];
-	if (v >= 1.0f)
-		v -= 1.0f;
-	while (w >= 1.0f)
-		w -= 1.0f;
+	float v = sample.a[1];
+	float w = float(rand()) / RAND_MAX;
 
 	float targetArea = w * sumArea;
 	int primID = std::lower_bound(sumAreaArray, sumAreaArray + meshData->faceCount, targetArea) - sumAreaArray;
